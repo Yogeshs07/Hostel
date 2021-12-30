@@ -8,9 +8,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class WelcomeController {
 
     @GetMapping
-    public String main(Model model) {
-        model.addAttribute("something", "Hello World!");
+    public String navigateToMainPage(Model model) {
         return "welcome";
+    }
+
+    @GetMapping("/report")
+    public String navigateToReportPage(Model model) {
+        return "report";
+    }
+
+    @GetMapping("/resident")
+    public String navigateToResidentPage(Model model) {
+        return "resident";
     }
 
 }
