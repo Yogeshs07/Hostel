@@ -6,8 +6,10 @@ import com.example.hostel.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.text.ParseException;
 import java.util.List;
 
@@ -26,6 +28,7 @@ public class EventController {
 
     @GetMapping("/event/new")
     public String navigateToNewEventFormPage(Model model) {
+        model.addAttribute("eventForm", new EventForm());
         model.addAttribute("event", null);
         return "event-form";
     }
@@ -33,6 +36,7 @@ public class EventController {
     @GetMapping("/event/update/{eventId}")
     public String navigateToUpdateEventFormPage(@PathVariable Integer eventId, Model model) {
         EventModel event = eventService.getEvent(eventId);
+        model.addAttribute("eventForm", new EventForm());
         model.addAttribute("event", event);
         return "event-form";
     }
@@ -45,13 +49,23 @@ public class EventController {
     }
 
     @PostMapping("/create-event")
-    public String createNewEvent(@ModelAttribute EventForm eventForm, Model model) throws ParseException {
+    public String createNewEvent(@Valid @ModelAttribute EventForm eventForm, BindingResult bindingResult, Model model) throws ParseException {
+        boolean formHasError = bindingResult.hasErrors();
+        if (formHasError) {
+            model.addAttribute("eventForm", eventForm);
+            return "event-form";
+        }
         eventService.createNewEvent(eventForm);
         return "redirect:/event";
     }
 
     @PostMapping("/update-event")
-    public String updateEvent(@ModelAttribute EventForm eventForm, Model model) throws ParseException {
+    public String updateEvent(@Valid @ModelAttribute EventForm eventForm, BindingResult bindingResult, Model model) throws ParseException {
+        boolean formHasError = bindingResult.hasErrors();
+        if (formHasError) {
+            model.addAttribute("eventForm", eventForm);
+            return "event-form";
+        }
         eventService.updateEvent(eventForm);
         return "redirect:/event/" + eventForm.getEventId().toString();
     }
