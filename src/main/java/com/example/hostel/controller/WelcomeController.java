@@ -9,17 +9,8 @@ public class WelcomeController {
 
     @GetMapping
     public String navigateToMainPage(Model model) {
+        model.addAttribute("activePage", "welcome");
         return "welcome";
-    }
-
-    @GetMapping("/report")
-    public String navigateToReportPage(Model model) {
-        return "report";
-    }
-
-    @GetMapping("/resident")
-    public String navigateToResidentPage(Model model) {
-        return "resident";
     }
 
 }

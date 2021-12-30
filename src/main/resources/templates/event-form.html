@@ -9,15 +9,7 @@
 <body>
 
 <div class="container">
-    <header class="d-flex justify-content-center py-3">
-        <ul class="nav nav-pills">
-            <li class="nav-item"><a href="/" class="nav-link" aria-current="page">Home</a></li>
-            <li class="nav-item"><a href="/event" class="nav-link active" aria-current="page">Event</a></li>
-            <li class="nav-item"><a href="/report" class="nav-link">Report</a></li>
-            <li class="nav-item"><a href="/resident" class="nav-link">Resident</a></li>
-        </ul>
-    </header>
-    <hr class="dropdown-divider">
+    <div th:replace="~{fragments/header :: header}"></div>
 
     <div th:if="${event}">
         <h4 class="mt-4">Update Event</h4>
