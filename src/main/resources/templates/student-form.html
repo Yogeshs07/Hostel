@@ -23,8 +23,14 @@
                     <input type="text" name="studentName" class="form-control" th:value="${student.studentName}">
                 </div>
                 <div class="col-6 mb-3">
-                    <label class="form-label">Student Year</label>
-                    <input type="text" name="studentYear" class="form-control" th:value="${student.studentYear}">
+                    <label class="form-label">Year</label>
+                    <select class="form-select" aria-label=".form-select-lg example" name="studentYear">
+                        <option value="1" th:selected="${'1'==student.studentYear}">1</option>
+                        <option value="2" th:selected="${'2'==student.studentYear}">2</option>
+                        <option value="3" th:selected="${'3'==student.studentYear}">3</option>
+                        <option value="4" th:selected="${'4'==student.studentYear}">4</option>
+                        <option value="5" th:selected="${'5'==student.studentYear}">5</option>
+                    </select>
                 </div>
             </div>
             <div class="row">
@@ -52,8 +58,15 @@
                     <input type="text" name="studentName" class="form-control">
                 </div>
                 <div class="col-6 mb-3">
-                    <label class="form-label">Student Year</label>
-                    <input type="text" name="studentYear" class="form-control">
+                    <label class="form-label">Year</label>
+                    <select class="form-select" aria-label=".form-select-lg example" name="studentYear">
+                        <option selected>Choose...</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
                 </div>
             </div>
             <div class="row">
