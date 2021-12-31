@@ -11,7 +11,8 @@
 <div class="container">
     <div th:replace="~{fragments/header :: header}"></div>
 
-    <h4 class="mt-4">Event</h4>
+    <h4 class="mt-4">Student</h4>
+    <p>Current Students:<span th:text="${studentList.size()}"></span></p>
     <a class="btn btn-primary mt-4" href="/student/new">Create Student</a>
 
     <div class="mt-4 table-responsive">

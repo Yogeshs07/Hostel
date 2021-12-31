@@ -21,18 +21,21 @@ public class EventController {
     public String navigateToEventPage(Model model) {
         List<EventModel> eventList = eventService.getAllEvents();
         model.addAttribute("eventList", eventList);
+        model.addAttribute("activePage", "event");
         return "event";
     }
 
     @GetMapping("/event/new")
     public String navigateToNewEventFormPage(Model model) {
         model.addAttribute("event", null);
+        model.addAttribute("activePage", "event");
         return "event-form";
     }
 
     @GetMapping("/event/update/{eventId}")
     public String navigateToUpdateEventFormPage(@PathVariable Integer eventId, Model model) {
         EventModel event = eventService.getEvent(eventId);
+        model.addAttribute("activePage", "event");
         model.addAttribute("event", event);
         return "event-form";
     }
@@ -40,6 +43,7 @@ public class EventController {
     @GetMapping("event/{eventId}")
     public String navigateToViewEventDetailsPage(@PathVariable Integer eventId, Model model) {
         EventModel event = eventService.getEvent(eventId);
+        model.addAttribute("activePage", "event");
         model.addAttribute("event", event);
         return "event-detail";
     }
@@ -47,18 +51,21 @@ public class EventController {
     @PostMapping("/create-event")
     public String createNewEvent(@ModelAttribute EventForm eventForm, Model model) throws ParseException {
         eventService.createNewEvent(eventForm);
+        model.addAttribute("activePage", "event");
         return "redirect:/event";
     }
 
     @PostMapping("/update-event")
     public String updateEvent(@ModelAttribute EventForm eventForm, Model model) throws ParseException {
         eventService.updateEvent(eventForm);
+        model.addAttribute("activePage", "event");
         return "redirect:/event/" + eventForm.getEventId().toString();
     }
 
     @GetMapping("/delete-event/{eventId}")
     public String deleteEvent(@PathVariable Integer eventId, Model model) {
         eventService.deleteEvent(eventId);
+        model.addAttribute("activePage", "event");
         return "redirect:/event";
     }
 
