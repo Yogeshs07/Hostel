@@ -1,10 +1,22 @@
 package com.example.hostel.model;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+
 public class StudentForm {
     private Integer studentId;
+
+    @NotEmpty(message = "Please input student name.")
+    @Size(min = 1, max = 200, message = "Please input between between {min} and {max} characters.")
     private String studentName;
+
+    @NotEmpty(message = "Please input student year.")
     private String studentYear;
+
+    @NotEmpty(message = "Please input student contact number.")
     private String studentContactNo;
+
+    @NotEmpty(message = "Please input student email.")
     private String studentEmail;
 
     public Integer getStudentId() {
