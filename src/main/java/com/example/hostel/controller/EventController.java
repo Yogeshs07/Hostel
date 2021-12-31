@@ -23,7 +23,7 @@ public class EventController {
     public String navigateToEventPage(Model model) {
         List<EventModel> eventList = eventService.getAllEvents();
         model.addAttribute("eventList", eventList);
-        model.addAttribute("activePage", "student");
+        model.addAttribute("activePage", "event");
         return "event";
     }
 
@@ -31,7 +31,7 @@ public class EventController {
     public String navigateToNewEventFormPage(Model model) {
         model.addAttribute("eventForm", new EventForm());
         model.addAttribute("event", null);
-        model.addAttribute("activePage", "student");
+        model.addAttribute("activePage", "event");
         return "event-form";
     }
 
@@ -40,7 +40,7 @@ public class EventController {
         EventModel event = eventService.getEvent(eventId);
         model.addAttribute("eventForm", new EventForm());
         model.addAttribute("event", event);
-        model.addAttribute("activePage", "student");
+        model.addAttribute("activePage", "event");
         return "event-form";
     }
 
@@ -48,7 +48,7 @@ public class EventController {
     public String navigateToViewEventDetailsPage(@PathVariable Integer eventId, Model model) {
         EventModel event = eventService.getEvent(eventId);
         model.addAttribute("event", event);
-        model.addAttribute("activePage", "student");
+        model.addAttribute("activePage", "event");
         return "event-detail";
     }
 
@@ -60,7 +60,7 @@ public class EventController {
             return "event-form";
         }
         eventService.createNewEvent(eventForm);
-        model.addAttribute("activePage", "student");
+        model.addAttribute("activePage", "event");
         return "redirect:/event";
     }
 
@@ -72,14 +72,14 @@ public class EventController {
             return "event-form";
         }
         eventService.updateEvent(eventForm);
-        model.addAttribute("activePage", "student");
+        model.addAttribute("activePage", "event");
         return "redirect:/event/" + eventForm.getEventId().toString();
     }
 
     @GetMapping("/delete-event/{eventId}")
     public String deleteEvent(@PathVariable Integer eventId, Model model) {
         eventService.deleteEvent(eventId);
-        model.addAttribute("activePage", "student");
+        model.addAttribute("activePage", "event");
         return "redirect:/event";
     }
 
