@@ -1,6 +1,14 @@
 package com.example.hostel.model;
 
+import com.example.hostel.entity.Report;
+import org.hibernate.annotations.CascadeType;
+
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class StudentModel {
     private Integer studentId;
@@ -8,6 +16,9 @@ public class StudentModel {
     private String studentYear;
     private String studentContactNo;
     private String studentEmail;
+
+    @OneToMany(mappedBy="student")
+    private List<Report> reportList;
 
     public Integer getStudentId() {
         return studentId;
@@ -47,5 +58,13 @@ public class StudentModel {
 
     public void setStudentEmail(String studentEmail) {
         this.studentEmail = studentEmail;
+    }
+
+    public List<Report> getReportList() {
+        return reportList;
+    }
+
+    public void setReportList(List<Report> reportList) {
+        this.reportList = reportList;
     }
 }
