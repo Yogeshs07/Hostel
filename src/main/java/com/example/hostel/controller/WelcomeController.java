@@ -13,9 +13,4 @@ public class WelcomeController {
         return "welcome";
     }
 
-    @GetMapping("/report")
-    public String navigateToReportPage(Model model) {
-        return "report";
-    }
-
 }

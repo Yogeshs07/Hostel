@@ -1,7 +1,10 @@
 package com.example.hostel.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "student")
@@ -29,6 +32,9 @@ public class Student {
 
     @Column(name = STUDENT_EMAIL)
     private String studentEmail;
+
+    @OneToMany(mappedBy = "student",cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.LAZY)
+    private List<Report> reportList = new ArrayList<>();
 
     public Integer getStudentId() {
         return studentId;
@@ -68,5 +74,13 @@ public class Student {
 
     public void setStudentEmail(String studentEmail) {
         this.studentEmail = studentEmail;
+    }
+
+    public List<Report> getReportList() {
+        return reportList;
+    }
+
+    public void setReportList(List<Report> reportList) {
+        this.reportList = reportList;
     }
 }
