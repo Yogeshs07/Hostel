@@ -1,7 +1,9 @@
 package com.example.hostel.controller;
 
+import com.example.hostel.model.ReportModel;
 import com.example.hostel.model.StudentForm;
 import com.example.hostel.model.StudentModel;
+import com.example.hostel.service.ReportService;
 import com.example.hostel.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,6 +23,9 @@ public class StudentController {
 
     @Autowired
     private StudentService studentService;
+
+    @Autowired
+    private ReportService reportService;
 
     @GetMapping("/student")
     public String navigateToStudentPage(Model model) {
@@ -50,8 +55,10 @@ public class StudentController {
     @GetMapping("student/{studentId}")
     public String navigateToViewStudentDetailsPage(@PathVariable Integer studentId, Model model) {
         StudentModel student = studentService.getStudent(studentId);
+        List<ReportModel> reportsList = reportService.getAllReportsFromStudent(studentId);
         model.addAttribute("activePage", "student");
         model.addAttribute("student", student);
+        model.addAttribute("reportsList", reportsList);
         return "student-detail";
     }
 

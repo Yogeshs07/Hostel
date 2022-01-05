@@ -12,8 +12,16 @@
     <div th:replace="~{fragments/header :: header}"></div>
 
     <div class="row">
-        <div class="col-sm-8">
-            <h4 class="mt-4" th:text="${student.studentName}"></h4>
+        <div class="row">
+            <div class="col-6">
+                <h4 class="mt-4" th:text="${student.studentName}"></h4>
+            </div>
+            <div class="col-6">
+                <td class="col-last align-items-center">
+                    <a class="btn btn-primary col-3 m-3" id="update" th:href="@{/student/update/{studentId}(studentId = ${student.studentId})}">Update</a>
+                    <a class="btn btn-danger col-3 m-3" id="delete" th:href="@{/delete-student/{studentId}(studentId = ${student.studentId})}">Delete</a>
+                </td>
+            </div>
         </div>
         <div class="mb-3">
             <input type="hidden" name="studentId" class="form-control" th:value="${student.studentId}">
@@ -39,11 +47,40 @@
                 <input type="email" name="studentEmail" class="form-control" th:value="${student.studentEmail}"
                        disabled>
             </div>
-            <td class="row align-items-center">
-                <a class="btn btn-primary col-3 m-3" id="update" th:href="@{/student/update/{studentId}(studentId = ${student.studentId})}">Update</a>
-                <a class="btn btn-danger col-3 m-3" id="delete" th:href="@{/delete-student/{studentId}(studentId = ${student.studentId})}">Delete</a>
-            </td>
+
         </div>
+
+        <div class="row">
+            <div class="col-6">
+                <div class="row mt-4"><h5>Report Submitted</h5></div>
+                <div class="table-bordered">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">Report ID</th>
+                            <th scope="col">Report Title</th>
+                            <th scope="col">Report Status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="report : ${reportsList}">
+                            <td th:text="${report.reportId}"></td>
+                            <td>
+                                <a class="info-link" th:text="${report.reportTitle}" th:href="@{/report/{reportId}(reportId = ${report.reportId})}"></a>
+                            </td>
+                            <td th:text="${report.reportStatus}"></td>
+                        </tr>
+                        <tr th:if="${reportsList.size()}==0">
+                            <td class="col-span-3">No Report Submitted.</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-6"></div>
+        </div>
+
+
     </div>
 </div>
 

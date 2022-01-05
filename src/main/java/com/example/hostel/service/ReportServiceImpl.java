@@ -69,4 +69,16 @@ public class ReportServiceImpl implements ReportService{
         report.setReportCategory(reportForm.getReportCategory());
         reportRepository.save(report);
     }
+
+    @Override
+    public List<ReportModel> getAllReportsFromStudent(Integer studentId) {
+        List<ReportModel> list = new ArrayList<>();
+        List<Report> reportList = reportRepository.findReportByStudent_StudentId(studentId);
+        if (!CollectionUtils.isEmpty(reportList)) {
+            for (Report s : reportList) {
+                list.add(ReportModelFactory.toReportModel(s));
+            }
+        }
+        return list;
+    }
 }

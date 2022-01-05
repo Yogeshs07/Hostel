@@ -12,4 +12,5 @@ public interface ReportService {
     void createNewReport(ReportForm report) throws ParseException;
     void deleteReport(Integer reportId);
     void updateReport(ReportForm reportForm) throws ParseException;
+    List<ReportModel> getAllReportsFromStudent(Integer studentId);
 }
