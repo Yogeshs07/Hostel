@@ -77,7 +77,36 @@
                     </table>
                 </div>
             </div>
-            <div class="col-6"></div>
+            <div class="col-6">
+                <div class="row mt-4"><h5>Participated Event</h5></div>
+                <div class="table-bordered">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">Event ID</th>
+                            <th scope="col">Event Title</th>
+                            <th scope="col">Event Status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="event : ${participatedEventList}">
+                            <td th:text="${event.eventId}"></td>
+                            <td>
+                                <a class="info-link" th:text="${event.eventId}" th:href="@{/event/{eventId}(eventId = ${event.eventId})}"></a>
+                            </td>
+                            <td>
+                                <span th:if="${#calendars.createNow().before(event.eventStartDatetime)}">Upcoming</span>
+                                <span th:if="${#calendars.createNow().after(event.eventStartDatetime)&&#calendars.createNow().before(event.eventEndDatetime)}">Ongoing</span>
+                                <span th:if="${#calendars.createNow().after(event.eventEndDatetime)}">Past</span>
+                            </td>
+                        </tr>
+                        <tr th:if="${participatedEventList.size()}==0">
+                            <td class="col-span-3">No Event Participated.</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
 
 

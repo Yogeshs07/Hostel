@@ -1,7 +1,7 @@
 package com.example.hostel.entity;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.util.*;
 
 @Entity
 @Table(name = "event")
@@ -13,6 +13,7 @@ public class Event {
     public static final String EVENT_START_DATETIME = "EVENT_START_DATETIME";
     public static final String EVENT_END_DATETIME = "EVENT_END_DATETIME";
     public static final String EVENT_DESTINATION = "EVENT_DESTINATION";
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,6 +34,15 @@ public class Event {
 
     @Column(name = EVENT_DESTINATION)
     private String eventDestination;
+
+
+    /**
+     * Event's participated students
+     */
+    @OneToMany(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<Participation> participations = new ArrayList<>();
+
+
 
     public Integer getEventId() {
         return eventId;
@@ -81,4 +91,13 @@ public class Event {
     public void setEventDestination(String eventDestination) {
         this.eventDestination = eventDestination;
     }
+
+    public List<Participation> getParticipations() {
+        return participations;
+    }
+
+    public void setParticipations(List<Participation> participations) {
+        this.participations = participations;
+    }
+
 }

@@ -5,6 +5,7 @@ import com.example.hostel.factory.EventModelFactory;
 import com.example.hostel.model.EventForm;
 import com.example.hostel.model.EventModel;
 import com.example.hostel.repository.EventRepository;
+import com.example.hostel.repository.ParticipationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,6 +26,9 @@ public class EventServiceImpl implements EventService {
 
     @Autowired
     private EventRepository eventRepository;
+
+    @Autowired
+    private ParticipationRepository participationRepository;
 
     @Override
     public List<EventModel> getAllEvents() {

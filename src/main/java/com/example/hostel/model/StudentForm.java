@@ -1,7 +1,11 @@
 package com.example.hostel.model;
 
+import com.example.hostel.entity.Event;
+import com.example.hostel.entity.Student;
+
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.util.Collection;
 
 public class StudentForm {
     private Integer studentId;
@@ -18,6 +22,8 @@ public class StudentForm {
 
     @NotEmpty(message = "Please input student email.")
     private String studentEmail;
+
+    private Collection<Event> events;
 
     public Integer getStudentId() {
         return studentId;
@@ -57,5 +63,13 @@ public class StudentForm {
 
     public void setStudentEmail(String studentEmail) {
         this.studentEmail = studentEmail;
+    }
+
+    public Collection<Event> getEvents() {
+        return events;
+    }
+
+    public void setEvents(Collection<Event> events) {
+        this.events = events;
     }
 }

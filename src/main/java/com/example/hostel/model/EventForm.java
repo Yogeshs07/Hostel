@@ -21,6 +21,9 @@ public class EventForm {
     private String eventStartDatetime;
     private String eventEndDatetime;
 
+    @NotEmpty(message = "Please select event status.")
+    private String eventStatus;
+
     public Integer getEventId() {
         return eventId;
     }
@@ -68,4 +71,5 @@ public class EventForm {
     public void setEventDestination(String eventDestination) {
         this.eventDestination = eventDestination;
     }
+
 }
