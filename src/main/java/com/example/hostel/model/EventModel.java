@@ -2,12 +2,8 @@ package com.example.hostel.model;
 
 import com.example.hostel.entity.Student;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Date;
-import java.util.Set;
 
 public class EventModel {
     private Integer eventId;

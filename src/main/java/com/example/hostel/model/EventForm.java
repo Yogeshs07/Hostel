@@ -21,9 +21,6 @@ public class EventForm {
     private String eventStartDatetime;
     private String eventEndDatetime;
 
-    @NotEmpty(message = "Please select event status.")
-    private String eventStatus;
-
     public Integer getEventId() {
         return eventId;
     }

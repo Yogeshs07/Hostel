@@ -10,8 +10,8 @@
 
 <div class="container">
     <div th:replace="~{fragments/header :: header}"></div>
-
     <h4 class="mt-4">Report</h4>
+    <p>Current Reports:<span th:text="${reportList.size()}"></span></p>
     <a class="btn btn-primary mt-4" href="/report/new">Create Report</a>
 
     <div class="mt-4 table-responsive">

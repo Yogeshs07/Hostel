@@ -12,6 +12,7 @@
     <div th:replace="~{fragments/header :: header}"></div>
 
     <h4 class="mt-4">Event</h4>
+    <p>Current Events :<span th:text="${eventList.size()}"></span></p>
     <a class="btn btn-primary mt-4" href="/event/new">Create Event</a>
 
     <div class="mt-4 table-responsive">

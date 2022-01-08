@@ -59,7 +59,7 @@ public class EventServiceImpl implements EventService {
         event.setEventStartDatetime(eventStartDatetime);
         if (!StringUtils.isEmpty(eventForm.getEventEndDatetime())) {
             Date eventEndDatetime = formatter.parse(eventForm.getEventEndDatetime());
-            event.setEventStartDatetime(eventEndDatetime);
+            event.setEventEndDatetime(eventEndDatetime);
         }
         eventRepository.save(event);
     }

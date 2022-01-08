@@ -60,9 +60,17 @@ public class ParticipationController {
     }
 
     @PostMapping("/event/remove-student")
-    public String removeStudent(@Valid @ModelAttribute ParticipationForm participationForm, BindingResult bindingResult, Model model, RedirectAttributes redirectAttrs) throws ParseException {
+    public String removeStudentFromEvent(@Valid @ModelAttribute ParticipationForm participationForm, BindingResult bindingResult, Model model, RedirectAttributes redirectAttrs) throws ParseException {
         participationService.withdraw(participationForm);
+        redirectAttrs.addFlashAttribute("success", "Student removed from the event!");
         return "redirect:/event/add/"+participationForm.getEventId().toString();
+    }
+
+    @PostMapping("/student/withdraw")
+    public String removeEventFromStudent(@Valid @ModelAttribute ParticipationForm participationForm, BindingResult bindingResult, Model model, RedirectAttributes redirectAttrs) throws ParseException {
+        participationService.withdraw(participationForm);
+        redirectAttrs.addFlashAttribute("success", "Student removed from the event!");
+        return "redirect:/student/"+participationForm.getStudentId().toString();
     }
 
 }
