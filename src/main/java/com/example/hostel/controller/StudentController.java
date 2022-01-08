@@ -1,8 +1,10 @@
 package com.example.hostel.controller;
 
+import com.example.hostel.model.EventModel;
 import com.example.hostel.model.ReportModel;
 import com.example.hostel.model.StudentForm;
 import com.example.hostel.model.StudentModel;
+import com.example.hostel.service.ParticipationService;
 import com.example.hostel.service.ReportService;
 import com.example.hostel.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,9 @@ public class StudentController {
 
     @Autowired
     private ReportService reportService;
+
+    @Autowired
+    private ParticipationService participationService;
 
     @GetMapping("/student")
     public String navigateToStudentPage(Model model) {
@@ -56,9 +61,11 @@ public class StudentController {
     public String navigateToViewStudentDetailsPage(@PathVariable Integer studentId, Model model) {
         StudentModel student = studentService.getStudent(studentId);
         List<ReportModel> reportsList = reportService.getAllReportsFromStudent(studentId);
+        List<EventModel> participatedEventList = participationService.getEvents(studentId);
         model.addAttribute("activePage", "student");
         model.addAttribute("student", student);
         model.addAttribute("reportsList", reportsList);
+        model.addAttribute("participatedEventList", participatedEventList);
         return "student-detail";
     }
 

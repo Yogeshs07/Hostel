@@ -1,8 +1,13 @@
 package com.example.hostel.controller;
 
+import com.example.hostel.entity.Participation;
+import com.example.hostel.entity.Student;
 import com.example.hostel.model.EventForm;
 import com.example.hostel.model.EventModel;
+import com.example.hostel.model.StudentModel;
 import com.example.hostel.service.EventService;
+import com.example.hostel.service.ParticipationService;
+import com.example.hostel.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +23,12 @@ public class EventController {
 
     @Autowired
     private EventService eventService;
+
+    @Autowired
+    StudentService studentService;
+
+    @Autowired
+    private ParticipationService participationService;
 
     @GetMapping("/event")
     public String navigateToEventPage(Model model) {
@@ -47,10 +58,13 @@ public class EventController {
     @GetMapping("event/{eventId}")
     public String navigateToViewEventDetailsPage(@PathVariable Integer eventId, Model model) {
         EventModel event = eventService.getEvent(eventId);
+        List<StudentModel> participatedStudents = participationService.getStudents(eventId);
         model.addAttribute("event", event);
+        model.addAttribute("participatedStudent",participatedStudents);
         model.addAttribute("activePage", "event");
         return "event-detail";
     }
+
 
     @PostMapping("/create-event")
     public String createNewEvent(@Valid @ModelAttribute EventForm eventForm, BindingResult bindingResult, Model model) throws ParseException {

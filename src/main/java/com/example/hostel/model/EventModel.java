@@ -1,7 +1,8 @@
 package com.example.hostel.model;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
+import com.example.hostel.entity.Student;
+
+import java.util.Collection;
 import java.util.Date;
 
 public class EventModel {
@@ -11,6 +12,7 @@ public class EventModel {
     private String eventDestination;
     private Date eventStartDatetime;
     private Date eventEndDatetime;
+    private Collection<Student> students;
 
     public Integer getEventId() {
         return eventId;
@@ -59,4 +61,13 @@ public class EventModel {
     public void setEventEndDatetime(Date eventEndDatetime) {
         this.eventEndDatetime = eventEndDatetime;
     }
+
+    public Collection<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(Collection<Student> students) {
+        this.students = students;
+    }
+
 }

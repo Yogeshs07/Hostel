@@ -1,10 +1,7 @@
 package com.example.hostel.entity;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Entity
 @Table(name = "student")
@@ -33,8 +30,22 @@ public class Student {
     @Column(name = STUDENT_EMAIL)
     private String studentEmail;
 
-    @OneToMany(mappedBy = "student",cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.LAZY)
+    /*
+     * To get the report submitted by Student
+     *
+     * */
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<Report> reportList = new ArrayList<>();
+
+    /**
+     * Student's participation record
+     */
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<Participation> participations = new ArrayList<>();
+
+//    @ManyToMany
+//    @JoinTable(name = "events_students", joinColumns = @JoinColumn(name = "student_id", referencedColumnName = "student_id"), inverseJoinColumns = @JoinColumn(name = "event_id", referencedColumnName = "event_id"))
+//    private Collection<Event> events;
 
     public Integer getStudentId() {
         return studentId;
@@ -83,4 +94,21 @@ public class Student {
     public void setReportList(List<Report> reportList) {
         this.reportList = reportList;
     }
+
+    public List<Participation> getParticipations() {
+        return participations;
+    }
+
+    public void setParticipations(List<Participation> participations) {
+        this.participations = participations;
+    }
+
+
+//    public Collection<Event> getEvents() {
+//        return events;
+//    }
+//
+//    public void setEvents(Collection<Event> events) {
+//        this.events = events;
+//    }
 }

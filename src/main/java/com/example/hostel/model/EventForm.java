@@ -68,4 +68,5 @@ public class EventForm {
     public void setEventDestination(String eventDestination) {
         this.eventDestination = eventDestination;
     }
+
 }
