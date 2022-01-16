@@ -41,9 +41,10 @@
                 <div class="col-6 mb-3 form-item required">
                     <label class="form-label">Report Status</label>
                     <select class="form-select" aria-label=".form-select-lg example" name="reportStatus">
-                        <option value="Pending" th:selected="${'pending'==report.reportStatus}">Pending</option>
-                        <option value="In Progress" th:selected="${'in_progress'==report.reportStatus}">In Progress</option>
-                        <option value="Completed" th:selected="${'completed'==report.reportStatus}">Completed</option>
+                        <option value="Pending" th:selected="${'Pending'==report.reportStatus}">Pending</option>
+                        <option value="In Progress" th:selected="${'In Progress'==report.reportStatus}">In Progress</option>
+                        <!--/*@thymesVar id="reportStatus" type=""*/-->
+                        <option value="Completed" th:selected="${'Completed'==report.reportStatus}">Completed</option>
                     </select>
                 </div>
                 <div class="col-6 mb-3 form-item required">
